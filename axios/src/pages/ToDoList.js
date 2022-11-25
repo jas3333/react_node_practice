@@ -1,16 +1,24 @@
 import { createContext, useState, useEffect } from 'react';
 import Form from '../components/todo/Form';
+import TaskList from '../components/todo/TaskList';
 
-const FormContext = createContext();
+export const ToDoContext = createContext();
 
-const taskItems = ['Go to the store', 'Create a task app'];
+const taskItems = [
+    {
+        title: 'Go to the store',
+    },
+    {
+        title: 'Make a todo list app',
+    },
+];
 
 const ToDoList = () => {
     const [task, setTask] = useState('');
-    const [taskList, setTaskList] = useState([taskItems]);
+    const [taskList, setTaskList] = useState([...taskItems]);
     const [showForm, setShowForm] = useState(true);
 
-    const formContextValues = {
+    const contextValues = {
         task,
         setTask,
         taskList,
@@ -18,13 +26,14 @@ const ToDoList = () => {
     };
 
     return (
-        <FormContext.Provider value={formContextValues}>
-            <div className='container-col mg-top-vlg border auto pad-lg align'>
-                <h1>To do List</h1>
+        <ToDoContext.Provider value={contextValues}>
+            <div className='container-col mg-top-vlg border auto pad-lg '>
+                <h1 className='text-center'>To do List</h1>
                 <div className='underline-lg'></div>
                 <Form />
+                <TaskList />
             </div>
-        </FormContext.Provider>
+        </ToDoContext.Provider>
     );
 };
 
