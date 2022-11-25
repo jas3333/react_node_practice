@@ -257,17 +257,24 @@ a:hover {
 .underline-min {
     margin: 0 auto;
     width: 30%;
-    height: 2px;
+    height: 1px;
     background-color: var(--color-blend);
 }
 .underline-mid {
     margin: 0 auto;
     width: 50%;
-    height: 2px;
+    height: 1px;
     background-color: var(--color-blend);
     margin-bottom: 10px;
 }
 
+.underline-lg {
+    margin: 0 auto;
+    width: 70%;
+    height: 1px;
+    background-color: var(--color-blend);
+    margin-bottom: 10px;
+}
 .underline-full {
     margin: 0 auto;
     width: 100%;

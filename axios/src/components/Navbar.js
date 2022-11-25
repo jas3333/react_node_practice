@@ -15,6 +15,9 @@ const Navbar = () => {
                 <Link to='post' className='nav-links'>
                     Post
                 </Link>
+                <Link to='todo' className='nav-links'>
+                    To do list
+                </Link>
             </div>
         </nav>
     );
