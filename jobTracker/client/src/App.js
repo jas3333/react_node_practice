@@ -1,7 +1,11 @@
-import './index.css';
+import Landing from './pages/Landing';
 
 function App() {
-    return <div className='App'></div>;
+    return (
+        <div className='container'>
+            <Landing />
+        </div>
+    );
 }
 
 export default App;
