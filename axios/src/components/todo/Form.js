@@ -2,16 +2,7 @@ import { useContext } from 'react';
 import { ToDoContext } from '../../pages/ToDoList';
 
 const Form = () => {
-    const { task, setTask, taskList, setTaskList } = useContext(ToDoContext);
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-
-        if (task) {
-            setTaskList([...taskList, { title: task }]);
-            setTask('');
-        }
-    };
+    const { task, setTask, taskList, setTaskList, handleSubmit } = useContext(ToDoContext);
 
     return (
         <div className='container-col'>

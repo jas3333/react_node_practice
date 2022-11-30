@@ -1,27 +1,55 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect, useCallback } from 'react';
+import axios from 'axios';
 import Form from '../components/todo/Form';
 import TaskList from '../components/todo/TaskList';
 
 export const ToDoContext = createContext();
 
-const taskItems = [
-    {
-        title: 'Go to the store',
-    },
-    {
-        title: 'Make a todo list app',
-    },
-];
+const url = 'http://localhost:4000/task';
 
 const ToDoList = () => {
     const [task, setTask] = useState('');
-    const [taskList, setTaskList] = useState([...taskItems]);
+    const [taskList, setTaskList] = useState([]);
     const [showForm, setShowForm] = useState(true);
 
+    const getTaskList = async () => {
+        try {
+            const response = await axios.get('http://localhost:4000/data');
+            const data = response.data;
+            console.log(data);
+            setTaskList(data);
+        } catch (error) {}
+    };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        if (task) {
+            try {
+                const response = await axios.post(url, { task });
+                setTask('');
+            } catch (error) {}
+        }
+    };
+
+    const handleDelete = async (id) => {
+        try {
+            const response = await axios.post('http://localhost:4000/delete', { id });
+        } catch (error) {}
+    };
+    useEffect(() => {
+        getTaskList();
+        console.log('Running...');
+    }, []);
+
     const contextValues = {
-        task,
-        setTask,
+        // Objects
         taskList,
+        task,
+        // Functions
+        setTask,
+        handleDelete,
+        handleSubmit,
         setTaskList,
     };
 

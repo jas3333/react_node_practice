@@ -3,13 +3,13 @@ import { ToDoContext } from '../../pages/ToDoList';
 import Task from './Task';
 
 const TaskList = () => {
-    const { taskList } = useContext(ToDoContext);
+    const { taskList, handleDelete } = useContext(ToDoContext);
 
     return (
         <div className='container-col mg-top-lg'>
             {taskList.map((item, index) => {
-                const { title } = item;
-                return <Task key={index} task={title} />;
+                const { title, id } = item;
+                return <Task key={index} task={title} handleDelete={handleDelete} id={id} />;
             })}
         </div>
     );
